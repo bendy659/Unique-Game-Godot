@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6sf2obg4opd1"]
+
+[ext_resource type="Script" uid="uid://dcxtuh4rdxv0" path="res://scripts/lsm_scene.gd" id="1_8otfl"]
+[ext_resource type="Texture2D" uid="uid://ism3xmbdm7ko" path="res://textures/loading.png" id="1_tke3h"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_8otfl"]
+
+[sub_resource type="Gradient" id="Gradient_fbq16"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 1, 0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51l5f"]
+gradient = SubResource("Gradient_fbq16")
+width = 16
+height = 16
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8otfl"]
+font = ExtResource("2_8otfl")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtf7w"]
+font = ExtResource("2_8otfl")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_bxn62"]
+font = ExtResource("2_8otfl")
+font_size = 48
+
+[node name="LoadSceneManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8otfl")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_51l5f")
+
+[node name="LoadIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("1_tke3h")
+
+[node name="Progress" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -71.0
+offset_right = -96.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(50, 23)
+text = "000%"
+label_settings = SubResource("LabelSettings_8otfl")
+
+[node name="FunFactsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -39.0
+offset_right = 56.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Fun fact: NO"
+label_settings = SubResource("LabelSettings_wtf7w")
+
+[node name="PressAnyButton" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -22.5
+offset_right = 183.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS ANY BUTTON"
+label_settings = SubResource("LabelSettings_bxn62")

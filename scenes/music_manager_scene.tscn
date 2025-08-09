@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5jon07hi0jb5"]
+
+[ext_resource type="Script" uid="uid://bqa3x6tulj1i6" path="res://scripts/music_manager_scene.gd" id="1_c6h5m"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="1_kf0u4"]
+[ext_resource type="Texture2D" uid="uid://c35ushi81sgqu" path="res://textures/ui/music_disc.png" id="2_vg86u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l2yd"]
+bg_color = Color(0, 0, 0, 0.74902)
+border_width_left = 4
+border_color = Color(0.676371, 0.887843, 0, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_c6h5m"]
+font = ExtResource("1_kf0u4")
+
+[node name="MusicManager-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c6h5m")
+
+[node name="MusicDisc" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 160.0
+offset_bottom = 80.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("2_vg86u")
+
+[node name="NowPlayingPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 80.0
+grow_horizontal = 0
+pivot_offset = Vector2(162, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0l2yd")
+
+[node name="Info" type="Label" parent="NowPlayingPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.5
+offset_right = 162.0
+offset_bottom = 16.5
+grow_vertical = 2
+text = "Music name
+Author: Example author"
+label_settings = SubResource("LabelSettings_c6h5m")
+vertical_alignment = 1

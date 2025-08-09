@@ -1,0 +1,198 @@
+[gd_scene load_steps=16 format=3 uid="uid://devro4slg7mit"]
+
+[ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/first_setup_settings_scene.gd" id="1_vtnqg"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_u4hiu"]
+[ext_resource type="Texture2D" uid="uid://cas152j8wwg3o" path="res://textures/icons/langs_icons.png" id="3_a0uqf"]
+[ext_resource type="Texture2D" uid="uid://25tw4wqhmw5c" path="res://textures/first_setup_settings/langs_select_arrow.png" id="4_y7ly1"]
+
+[sub_resource type="Gradient" id="Gradient_1gbob"]
+interpolation_color_space = 1
+colors = PackedColorArray(0, 0, 0, 1, 0.0562916, 0.0562916, 0.0562916, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vtnqg"]
+gradient = SubResource("Gradient_1gbob")
+width = 32
+height = 32
+fill_to = Vector2(0.125, 0.125)
+repeat = 2
+metadata/_snap_enabled = true
+metadata/_snap_count = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4hiu"]
+atlas = SubResource("GradientTexture2D_vtnqg")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecvvk"]
+atlas = ExtResource("4_y7ly1")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y7ly1"]
+font = ExtResource("2_u4hiu")
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7ly1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 32
+border_width_top = 32
+border_width_right = 32
+border_width_bottom = 32
+border_color = Color(0, 1, 0, 1)
+border_blend = true
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+corner_detail = 1
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_a0uqf"]
+font = ExtResource("2_u4hiu")
+font_size = 64
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7ly1"]
+atlas = ExtResource("3_a0uqf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0uqf"]
+atlas = ExtResource("3_a0uqf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iitd"]
+atlas = ExtResource("3_a0uqf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olt1o"]
+atlas = ExtResource("3_a0uqf")
+region = Rect2(16, 16, 16, 16)
+
+[node name="FirstSetupSettings-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vtnqg")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_u4hiu")
+
+[node name="SelectLanguage-Window" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+pivot_offset = Vector2(640, 360)
+
+[node name="Tooltip" type="Control" parent="SelectLanguage-Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 128.0
+offset_right = -128.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Arrow" type="TextureRect" parent="SelectLanguage-Window/Tooltip"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 48.0
+offset_right = 31.0
+offset_bottom = 112.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_ecvvk")
+
+[node name="Info" type="Label" parent="SelectLanguage-Window/Tooltip"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -8.0
+offset_right = 214.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Russian"
+label_settings = SubResource("LabelSettings_y7ly1")
+horizontal_alignment = 1
+
+[node name="SelectBoxControl" type="Control" parent="SelectLanguage-Window"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 232.0
+offset_right = 512.0
+offset_bottom = 488.0
+
+[node name="SelectBox" type="Panel" parent="SelectLanguage-Window/SelectBoxControl"]
+offset_right = 256.0
+offset_bottom = 256.0
+pivot_offset = Vector2(128, 128)
+theme_override_styles/panel = SubResource("StyleBoxFlat_y7ly1")
+
+[node name="Info" type="Label" parent="SelectLanguage-Window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 32.0
+offset_right = 214.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "Select language"
+label_settings = SubResource("LabelSettings_a0uqf")
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="SelectLanguage-Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 256
+alignment = 1
+
+[node name="RuLang" type="TextureButton" parent="SelectLanguage-Window/Container"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_y7ly1")
+texture_hover = SubResource("AtlasTexture_a0uqf")
+stretch_mode = 5
+
+[node name="EnLang" type="TextureButton" parent="SelectLanguage-Window/Container"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_1iitd")
+texture_hover = SubResource("AtlasTexture_olt1o")
+stretch_mode = 5
+
+[connection signal="pressed" from="SelectLanguage-Window/Container/RuLang" to="." method="_on_ru_lang_pressed"]
+[connection signal="pressed" from="SelectLanguage-Window/Container/EnLang" to="." method="_on_en_lang_pressed"]

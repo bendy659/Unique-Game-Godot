@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5urbjpwjoawt"]
+
+[ext_resource type="Script" uid="uid://bgbg1vpk6w26s" path="res://scripts/crash_scene.gd" id="1_2pmve"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="1_hmc0b"]
+
+[sub_resource type="Gradient" id="Gradient_u81s1"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0.103544, 5.79073e-08, 1.35368e-08, 1, 0.494245, 1.40181e-06, 2.40654e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmc0b"]
+gradient = SubResource("Gradient_u81s1")
+width = 16
+height = 16
+fill_from = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u81s1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_2pmve"]
+font = ExtResource("1_hmc0b")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hmc0b"]
+font_size = 384
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ukvb"]
+font = ExtResource("1_hmc0b")
+
+[node name="Crash-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2pmve")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hmc0b")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 816.0
+offset_bottom = 704.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u81s1")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 784.0
+offset_bottom = 672.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="ExampleLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "[EXAMPLE] EXAMPLE LABEL LOG"
+label_settings = SubResource("LabelSettings_2pmve")
+
+[node name="SAD_FACE" type="Label" parent="."]
+layout_mode = 0
+offset_left = 934.99
+offset_top = -35.6699
+offset_right = 1161.99
+offset_bottom = 488.33
+rotation = 1.5708
+pivot_offset = Vector2(110.17, 308.84)
+text = ":("
+label_settings = SubResource("LabelSettings_hmc0b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionsInfo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -39.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press 'ENTER' for full restart game
+Press 'ESC' for close game
+---------------------------------------------------
+Press '0' for open test-polygone"
+label_settings = SubResource("LabelSettings_3ukvb")
+horizontal_alignment = 2
+vertical_alignment = 2

@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://c21po7v10d02j"]
+
+[ext_resource type="Script" uid="uid://ce4dcipqn7p8d" path="res://scripts/tests/test_animation_utils.gd" id="1_ag2x0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ag2x0"]
+font_size = 120
+
+[node name="TestAnimationUtils" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ag2x0")
+
+[node name="Box" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(32, 32)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 47.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(93, 0)
+action_mode = 0
+text = "ReAnimate"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.0
+offset_right = 111.0
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "OFF"
+label_settings = SubResource("LabelSettings_ag2x0")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
