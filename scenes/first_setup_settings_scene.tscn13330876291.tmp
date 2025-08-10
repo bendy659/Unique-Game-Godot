@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://devro4slg7mit"]
+[gd_scene load_steps=18 format=3 uid="uid://devro4slg7mit"]
 
 [ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/first_setup_settings_scene.gd" id="1_vtnqg"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_u4hiu"]
 [ext_resource type="Script" uid="uid://bjbie4t2kwcbo" path="res://scripts/first_setup_settings/select_language_menu.gd" id="3_1iitd"]
 [ext_resource type="Texture2D" uid="uid://cas152j8wwg3o" path="res://textures/icons/langs_icons.png" id="3_a0uqf"]
 [ext_resource type="Theme" uid="uid://cooickbpux287" path="res://themes/basic_ui.tres" id="4_y7ly1"]
-[ext_resource type="Script" uid="uid://crqhm3fy8xqmh" path="res://scripts/first_setup_settings/setup_volumes_menu.gd" id="5_olt1o"]
 
 [sub_resource type="Gradient" id="Gradient_1gbob"]
 interpolation_color_space = 1
@@ -70,10 +69,6 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("3_a0uqf")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ecvvk"]
-atlas = ExtResource("3_a0uqf")
-region = Rect2(32, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1iitd"]
 atlas = ExtResource("3_a0uqf")
 region = Rect2(0, 16, 16, 16)
@@ -81,10 +76,6 @@ region = Rect2(0, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_olt1o"]
 atlas = ExtResource("3_a0uqf")
 region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rtm2"]
-atlas = ExtResource("3_a0uqf")
-region = Rect2(32, 16, 16, 16)
 
 [node name="FirstSetupSettings-Scene" type="Control"]
 layout_mode = 3
@@ -204,7 +195,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_y7ly1")
 texture_hover = SubResource("AtlasTexture_a0uqf")
-texture_disabled = SubResource("AtlasTexture_ecvvk")
 stretch_mode = 5
 
 [node name="EnLang" type="Control" parent="SelectLanguage-Menu/Container"]
@@ -221,34 +211,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_1iitd")
 texture_hover = SubResource("AtlasTexture_olt1o")
-texture_disabled = SubResource("AtlasTexture_0rtm2")
 stretch_mode = 5
-
-[node name="SetupVolumes-Menu" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(640, 360)
-script = ExtResource("5_olt1o")
-
-[node name="Title" type="Label" parent="SetupVolumes-Menu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -214.0
-offset_top = 32.0
-offset_right = 214.0
-offset_bottom = 92.0
-grow_horizontal = 2
-text = "Adjust the master volume"
-label_settings = SubResource("LabelSettings_a0uqf")
-horizontal_alignment = 1
-
-[node name="AudioStream" type="AudioStreamPlayer" parent="SetupVolumes-Menu"]
 
 [node name="Confirm" type="Button" parent="."]
 top_level = true

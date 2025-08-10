@@ -9,15 +9,15 @@ var confirmVisible: bool = false
 var menus: Array[Control] = []
 var currentMenu: Control
 var lastMenu: Control
+var confirmButtonVisible: bool = false
 
 var glowBottomAnim = AnimationHelper.Animator.new()
 var menusAnimIn = AnimationHelper.Animator.new()
 var menusAnimOut = AnimationHelper.Animator.new()
-var confirmButtonAnim = AnimationHelper.Animator.new()
 
 signal confirmed(data: Dictionary)
-signal confirm_visibled(visible: bool)
-
+signal confirm_show
+signal confirm_hide
 signal next_menu
 
 ## Main
@@ -31,7 +31,8 @@ func _ready() -> void:
 	confirmButton.position.y += 164
 	
 	connect("confirmed", onConfirmed)
-	connect("confirm_visibled", onConfirmVisibled)
+	connect("confirm_show", onConfirmButtonShow)
+	connect("confirm_hide", onConfirmButtonHide)
 	
 	AnimationHelper.eventHandler.connect(onAnimHandler)
 	
@@ -61,17 +62,7 @@ func _ready() -> void:
 			AnimationHelper.Keyframe.new(1, 0)
 		]
 	])
-	confirmButtonAnim.timelines({
-		&"CONFIRM_SHOW": [
-			AnimationHelper.Keyframe.new(0, 618 + 128, 0.25),
-			AnimationHelper.Keyframe.new(1, 618)
-		],
-		&"CONFIRM_HIDE": [
-			AnimationHelper.Keyframe.new(0, 618, 0.25),
-			AnimationHelper.Keyframe.new(1, 618 + 128)
-		]
-	})
-	await Game.wait(2)
+	await Game.wait(1)
 	await get_tree().process_frame
 
 	for menu in menus:
@@ -93,7 +84,6 @@ func _process(delta: float) -> void:
 	
 	var menuIn = menusAnimIn.update(delta)
 	var menuOut = menusAnimOut.update(delta)
-	var confButAnim = confirmButtonAnim.update(delta)
 	
 	if currentMenu:
 		currentMenu.global_position.y = menuIn[0]
@@ -103,8 +93,12 @@ func _process(delta: float) -> void:
 		lastMenu.global_position.y = menuOut[0]
 		lastMenu.modulate.a = menuOut[1]
 	
-	if confirmButtonAnim.isPlaying:
-		confirmButton.position.y = confButAnim[0]
+	confirmButton.position.y = lerp(
+		confirmButton.position.y,
+		float(618 if confirmButtonVisible else 618 + 128),
+		delta * 16
+	)
+	confirmButton.disabled = !confirmButtonVisible
 
 func onConfirmed(data: Dictionary) -> void:
 	glowBottomAnim.play(true)
@@ -112,14 +106,21 @@ func onConfirmed(data: Dictionary) -> void:
 	match data.keys()[0]:
 		"lang":
 			GameSettings.language.value = data["lang"]
+	
+	confirmButtonVisible = false
 
-func onConfirmVisibled(visible: bool) -> void:
-	confirmVisible = visible
+func onConfirmButtonShow() -> void:
+	if !confirmButtonVisible:
+		confirmButtonVisible = true
+
+func onConfirmButtonHide() -> void:
+	if confirmButtonVisible:
+		confirmButtonVisible = false
 
 func onAnimHandler(callEvent: StringName) -> void:
 	match callEvent:
 		&"MENU_ENTER":
 			add_child(currentMenu)
 		&"MENU_EXIT":
-			confirmButtonAnim.play(true)
+			confirmButtonVisible = false
 			remove_child(lastMenu)

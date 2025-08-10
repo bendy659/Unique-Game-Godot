@@ -16,16 +16,23 @@ const translation: Dictionary = {
 		]
 	},
 	"firstSetupSettings": {
-		"good": [
-			"Хорошо",
-			"Good"
-		]
+		"good": ["Хорошо", "Good"],
+		"confirm": ["Подтвердить", "Confirm"],
+		
+		"selectLanguage": {
+			"title": ["Выбери язык", "Select language"],
+			"subtitle": ["Русский", "English"]
+		},
+		"setupVolumes": {
+			"title": ["Настрой общую громкость", "Adjust the master volume"],
+			"expand": ["Расширенно", "Expanded"]
+		}
 	}
 }
 
 ## Util's
 
-func translate(key: String) -> Variant:
+func translate(key: String, overrideLangId: int = -1) -> Variant:
 	var parts = key.split(".")
 	var result = translation
 	
@@ -37,5 +44,5 @@ func translate(key: String) -> Variant:
 			Logger.warn("Unable find translation for key '%s'" % key)
 			break
 	
-	var id = GameSettings.language.value
+	var id = overrideLangId if overrideLangId != -1 else GameSettings.language.value
 	return result[id]

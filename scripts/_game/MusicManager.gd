@@ -49,8 +49,10 @@ func _process(delta: float) -> void:
 
 ## Util's
 
-func playMusic(id: int, notification: bool = true) -> void:
-	pass
+func playMusic(id: int, streamId: String, notification: bool = true) -> void:
+	var selected = musics[id]
+	
+	GameSettings.soundMusic.playSound("music/" + selected["id"], streamId)
 
 func _onMusicStarted(id: int) -> void:
 	playing = id

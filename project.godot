@@ -26,7 +26,6 @@ LSM="*res://scripts/_game/LSM.gd"
 Logger="*res://scripts/_game/Logger.gd"
 MusicManager="*res://scripts/_game/MusicManager.gd"
 Language="*res://scripts/_game/Language.gd"
-SoundManager="*res://scripts/_game/SoundManager.gd"
 GameSettings="*res://scripts/_game/GameSettings.gd"
 AnimationHelper="*res://scripts/utils/AnimationHelper.gd"
 
