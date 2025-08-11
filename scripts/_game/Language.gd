@@ -1,7 +1,5 @@
 extends Node
 
-enum DataType { STRING, ARRAY }
-
 const translation: Dictionary = {
 	"startup": {
 		"xdl": [
@@ -18,6 +16,7 @@ const translation: Dictionary = {
 	"firstSetupSettings": {
 		"good": ["Хорошо", "Good"],
 		"confirm": ["Подтвердить", "Confirm"],
+		"tip": ["Позже вы сможете изменить всё в настройках", "Later you can change everything in the settings."],
 		
 		"selectLanguage": {
 			"title": ["Выбери язык", "Select language"],

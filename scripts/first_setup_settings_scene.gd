@@ -2,7 +2,11 @@ extends Control
 
 @onready var background = $Background
 @onready var glowBottom = $GlowBottom
+@onready var tip = $Tip
 @onready var confirmButton = $Confirm
+
+@onready var soundGood = $Good
+@onready var backgroundMusic = $BackgroundMusic
 
 var aTime: float = 0.0
 var confirmVisible: bool = false
@@ -25,6 +29,7 @@ signal next_menu
 func _ready() -> void:
 	for node in get_children():
 		if node.get_class() == "Control":
+			node.visible = true
 			menus.append(node)
 			remove_child(node)
 	
@@ -67,6 +72,7 @@ func _ready() -> void:
 
 	for menu in menus:
 		currentMenu = menu
+		menu.start()
 		menusAnimIn.play(true)
 		await next_menu
 		
@@ -99,13 +105,20 @@ func _process(delta: float) -> void:
 		delta * 16
 	)
 	confirmButton.disabled = !confirmButtonVisible
+	
+	if !backgroundMusic.playing:
+		backgroundMusic.play()
 
 func onConfirmed(data: Dictionary) -> void:
 	glowBottomAnim.play(true)
+	soundGood.play()
 	
 	match data.keys()[0]:
 		"lang":
-			GameSettings.language.value = data["lang"]
+			GameSettings.language.setValue(data["lang"])
+		"soundMasterVolume":
+			GameSettings.soundMaster.setVolume(data["soundMasterVolume"])
+			GameSettings.soundMaster.updateVolume()
 	
 	confirmButtonVisible = false
 

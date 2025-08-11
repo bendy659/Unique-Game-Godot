@@ -10,5 +10,5 @@ func _input(event: InputEvent) -> void:
 
 ## Util's
 
-func wait(ms: float) -> void:
-	await get_tree().create_timer(ms).timeout
+func wait(sec: float) -> void:
+	await get_tree().create_timer(sec).timeout

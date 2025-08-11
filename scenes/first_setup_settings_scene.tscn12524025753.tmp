@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://devro4slg7mit"]
+[gd_scene load_steps=24 format=3 uid="uid://devro4slg7mit"]
 
 [ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/first_setup_settings_scene.gd" id="1_vtnqg"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_u4hiu"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cas152j8wwg3o" path="res://textures/icons/langs_icons.png" id="3_a0uqf"]
 [ext_resource type="Theme" uid="uid://cooickbpux287" path="res://themes/basic_ui.tres" id="4_y7ly1"]
 [ext_resource type="Script" uid="uid://crqhm3fy8xqmh" path="res://scripts/first_setup_settings/setup_volumes_menu.gd" id="5_olt1o"]
-[ext_resource type="AudioStream" uid="uid://by5ue3tfvnn5i" path="res://sounds/ui/click_1.mp3" id="6_66540"]
 [ext_resource type="AudioStream" uid="uid://bgo5tmiaavhpa" path="res://sounds/ui/button_correct.mp3" id="7_ecvvk"]
 [ext_resource type="AudioStream" uid="uid://naegvrl2wovi" path="res://sounds/music/technological_minimalism.mp3" id="8_0rtm2"]
 
@@ -88,10 +87,6 @@ region = Rect2(16, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rtm2"]
 atlas = ExtResource("3_a0uqf")
 region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="LabelSettings" id="LabelSettings_66540"]
-font = ExtResource("2_u4hiu")
-font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rtm2"]
 font = ExtResource("2_u4hiu")
@@ -237,10 +232,6 @@ texture_hover = SubResource("AtlasTexture_olt1o")
 texture_disabled = SubResource("AtlasTexture_0rtm2")
 stretch_mode = 5
 
-[node name="SelectSFX" type="AudioStreamPlayer" parent="SelectLanguage-Menu"]
-stream = ExtResource("6_66540")
-bus = &"UI"
-
 [node name="SetupVolumes-Menu" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -265,45 +256,7 @@ text = "Adjust the master volume"
 label_settings = SubResource("LabelSettings_a0uqf")
 horizontal_alignment = 1
 
-[node name="MasterVolumeSlider" type="HSlider" parent="SetupVolumes-Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -8.0
-offset_right = 128.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-pivot_offset = Vector2(128, 8)
-max_value = 1.0
-step = 0.01
-value = 0.25
-
-[node name="MasterVolumeLabel" type="Label" parent="SetupVolumes-Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 34.0
-offset_right = 50.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "25%"
-label_settings = SubResource("LabelSettings_66540")
-horizontal_alignment = 1
-
-[node name="MasterVolumeSFX" type="AudioStreamPlayer" parent="SetupVolumes-Menu"]
-stream = ExtResource("6_66540")
-bus = &"UI"
+[node name="AudioStream" type="AudioStreamPlayer" parent="SetupVolumes-Menu"]
 
 [node name="Tip" type="Label" parent="."]
 layout_mode = 1

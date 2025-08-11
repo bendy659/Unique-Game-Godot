@@ -19,6 +19,10 @@ boot_splash/image="uid://cvken1eiycv3g"
 config/icon="uid://cvken1eiycv3g"
 boot_splash/minimum_display_time=2000
 
+[audio]
+
+buses/default_bus_layout="res://audio_bus.tres"
+
 [autoload]
 
 Game="*res://scripts/_game/Game.gd"

@@ -8,20 +8,29 @@ extends Control
 @onready var ruIcon = $Container/RuLang/Icon
 @onready var enLang = $Container/EnLang
 @onready var enIcon = $Container/EnLang/Icon
+@onready var selectSFX = $SelectSFX
 var confirm: Button
 
 var aTime: float = 0.0
 var langSelected: TextureButton
+var langSelectedID: int
 var selected: bool = false
 
 var iconsPos: Array = []
 
+var parent: Control
+var tree: SceneTree
+
 ## Main
 
 func _ready() -> void:
+	parent = get_parent()
+	tree = get_tree()
+
+func start() -> void:
 	set_process(false)
 	
-	confirm = get_parent().get_node("Confirm")
+	confirm = parent.get_node("Confirm")
 	
 	ruIcon.pressed.connect(onRuSelected)
 	enIcon.pressed.connect(onEnSelected)
@@ -32,7 +41,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	aTime += delta
-	
+
 	selectBox.scale = Vector2(
 		sin(aTime * PI * 4) / 64 + 1,
 		sin(aTime * PI * 4) / 64 + 1
@@ -83,50 +92,50 @@ func _process(delta: float) -> void:
 		)
 
 func onRuSelected() -> void:
+	langSelectedID = 0
 	iconsPos[0] = ruIcon.global_position
-	
 	langSelected = ruIcon
 	title.text = Language.translate("firstSetupSettings.selectLanguage.title", 0)
 	subtitle.text = "Русский"
-	
 	confirm.text = Language.translate("firstSetupSettings.confirm", 0)
+	selectSFX.play()
 	
-	get_parent().emit_signal("confirm_show")
+	parent.emit_signal("confirm_show")
 
 func onEnSelected() -> void:
+	langSelectedID = 1
 	iconsPos[1] = enIcon.global_position
-	
 	langSelected = enIcon
 	title.text = Language.translate("firstSetupSettings.selectLanguage.title", 1)
 	subtitle.text = "English"
-	
 	confirm.text = Language.translate("firstSetupSettings.confirm", 1)
+	selectSFX.play()
 	
-	get_parent().emit_signal("confirm_show")
+	parent.emit_signal("confirm_show")
 
 func onConfirmed() -> void:
 	ruIcon.disabled = langSelected == enIcon
 	enIcon.disabled = langSelected == ruIcon
 	
-	get_parent().emit_signal("confirmed", { "lang": 0 if langSelected == ruIcon else 1 })
+	parent.emit_signal("confirmed", { "lang": langSelectedID })
+	parent.get_node("Tip").text = Language.translate("firstSetupSettings.tip")
 	title.text = "Отлично" if langSelected == ruIcon else "Good"
 	title.modulate = Color(0, 1, 0)
 	await Game.wait(2)
 	
-	get_parent().emit_signal("next_menu")
+	parent.emit_signal("next_menu")
 
 ## Util's
 
 func readyProccess() -> void:
-	await get_tree().process_frame
+	await tree.process_frame
 
 	ruIcon.pivot_offset = Vector2(128, 128)
 	enIcon.pivot_offset = Vector2(128, 128)
 	iconsPos = [Vector2.ZERO, Vector2.ZERO]
-	print(iconsPos)
 
 func readyEnd() -> void:
-	await get_parent().confirmed
+	await parent.confirmed
 	
 	selected = true
-	get_parent().emit_signal("confirm_hide")
+	parent.emit_signal("confirm_hide")

@@ -1,5 +1,9 @@
 extends Node
 
+##
+## Thx Grok 3 & ChatGPT
+##
+
 signal animationStarted
 signal animationStoped
 signal eventHandler(eName: StringName)

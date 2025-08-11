@@ -8,7 +8,9 @@ var maxFps = Prop.new("Max FPS", 24)
 	
 ## Sounds
 var soundMaster = PropSound.new("Master", 1)
-var soundMusic = PropSound.new("Music", 1)
+var soundMusic = PropSound.new("Music", 1, soundMaster)
+var soundEnv = PropSound.new("Env", 1, soundMaster)
+var soundUI = PropSound.new("UI", 1, soundMaster)
 
 signal onGameSettingsChanged
 
@@ -30,32 +32,57 @@ class Prop:
 		name = iname
 		value = ivalue
 
-class PropSound extends Prop:
-	var streams: Dictionary = {}
+	func setValue(ivalue: Variant) -> void:
+		value = ivalue
+
+class PropSound:
+	var audioBusIndex: int
+	var volume: float
+	var parent: PropSound
+	var streams: Array[AudioStream]
 	
-	func addStream(istream: Object, id: String, volume: float) -> void:
-		streams[id] = {
-			"stream": istream,
-			"type": istream.get_class(),
-			"volume": 1.0
-		}
+	func _init(iaudioBus: StringName, ivolume: float = 1.0, iparent: PropSound = null) -> void:
+		audioBusIndex = AudioServer.get_bus_index(iaudioBus)
+		AudioServer.set_bus_volume_linear(audioBusIndex, ivolume)
+		volume = AudioServer.get_bus_volume_linear(audioBusIndex)
 	
-	func removeStream(id: String) -> void:
-		streams.erase(id)
+	func setVolume(ivolume: float) -> void:
+		if parent:
+			AudioServer.set_bus_volume_linear(audioBusIndex, ivolume * parent.volume)
+			volume = ivolume * parent.volume
+		else:
+			AudioServer.set_bus_volume_linear(audioBusIndex, volume)
+			volume = ivolume
 	
-	func clearStreams() -> void:
-		streams.clear()
+	func updateVolume() -> void:
+		if parent:
+			AudioServer.set_bus_volume_linear(audioBusIndex, volume * parent.volume)
+		else:
+			AudioServer.set_bus_volume_linear(audioBusIndex, volume)
 	
-	func playSound(localPath: String, streamId: String) -> void:
-		var stream = streams[streamId]["stream"]
-		var volume = streams[streamId]["volume"]
-		var soundPath = load("res://sounds" + localPath + ".mp3")
+	func addStream(istream: Object) -> void:
+		Logger.info("Stream %s added to %s" % [
+			istream, AudioServer.get_bus_name(audioBusIndex)
+		])
+		streams.append(istream)
 		
-		stream.volume_db = linear_to_db(volume)
-		stream.stream = soundPath
-		stream.play()
 	
-	func stopSound(streamId: String) -> void:
-		var stream = streams[streamId]["stream"]
+	func removeStream(istream: Object) -> void:
+		for i in range(streams.size()):
+			if streams[i] == istream:
+				Logger.info("Stream %s has removed from %s" % [
+					streams[i], AudioServer.get_bus_name(audioBusIndex)
+				])
+				streams.remove_at(i)
+	
+	func playSound(localPath: String) -> void:
+		var soundPath = load("res://sounds/" + localPath + ".mp3")
+		var apply = false
 		
-		stream.stop()
+		for stream in streams:
+			if !stream.playing:
+				apply = true
+				stream.stream = soundPath
+				stream.play()
+		if !apply:
+			Logger.warn("All streams from %s is playing. Not found empty!")
