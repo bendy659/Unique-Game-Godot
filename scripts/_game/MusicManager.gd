@@ -24,9 +24,16 @@ var gameModeOn = MusicInfo.new(
 var oiia_oiia = MusicInfo.new(
 	"OIIA OIIA",
 	"W&W",
-	"oiia_oiia",
+	"w_w_oiia_oiia",
 	Color(1, 1, 0),
-	{ 0: 130 } # Fixing
+	{
+		0: 37.5,
+		14.45: 400,
+		27.30: 33,
+		30.25: 75,
+		32: 400,
+		33.5: 130
+	}
 )
 
 var musics: Dictionary = {}

@@ -25,6 +25,19 @@ const translation: Dictionary = {
 		"setupVolumes": {
 			"title": ["Настрой общую громкость", "Adjust the master volume"],
 			"expand": ["Расширенно", "Expanded"]
+		},
+		"usesfulSettings": {
+			"title": ["Полезные настройки", "Usesful settings"],
+			"setting0": ["Ничего", "Nothing"],
+			"setting1": ["Заряд батареи", "Buttery energy"],
+			"setting2": ["OIIA", "OIIA"]
+		}
+	},
+	
+	"achivments": {
+		"example": {
+			"name": ["Вставте имя", "Insert name"],
+			"desc": ["Вставте описание", "Insert description"]
 		}
 	}
 }

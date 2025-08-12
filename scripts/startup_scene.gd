@@ -23,6 +23,7 @@ func _ready() -> void:
 	
 	loadIcon.visible = false
 	stream.paused = false
+	AchivementManager.getAchi("example").unlock()
 	await Game.wait(6 + 1)
 	
 	animator.play("show")

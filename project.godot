@@ -32,6 +32,7 @@ MusicManager="*res://scripts/_game/MusicManager.gd"
 Language="*res://scripts/_game/Language.gd"
 GameSettings="*res://scripts/_game/GameSettings.gd"
 AnimationHelper="*res://scripts/utils/AnimationHelper.gd"
+AchivementManager="*res://scripts/_game/AchivementManager.gd"
 
 [display]
 

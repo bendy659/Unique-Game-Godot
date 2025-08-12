@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=3 uid="uid://bw8krhjb52bwn"]
+
+[ext_resource type="Script" uid="uid://cer7c5uqm5cma" path="res://scripts/achievement_manager_scene.gd" id="1_7pmif"]
+[ext_resource type="Texture2D" uid="uid://dtkrvkun1lnsg" path="res://textures/achievements_atlas.png" id="1_fsvh7"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_7pmif"]
+
+[sub_resource type="Gradient" id="Gradient_1swfo"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a6f7e"]
+noise_type = 5
+frequency = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t24uv"]
+width = 24
+height = 8
+color_ramp = SubResource("Gradient_1swfo")
+noise = SubResource("FastNoiseLite_a6f7e")
+
+[sub_resource type="Gradient" id="Gradient_chbv7"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.512987, 1)
+colors = PackedColorArray(0.187176, 0.187176, 0.187176, 1, 0.370364, 0.370365, 0.370364, 1, 0.314316, 0.314316, 0.314316, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2eoej"]
+gradient = SubResource("Gradient_chbv7")
+width = 16
+height = 16
+fill_from = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chbv7"]
+atlas = ExtResource("1_fsvh7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_t24uv"]
+font = ExtResource("2_7pmif")
+font_size = 12
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6f7e"]
+font = ExtResource("2_7pmif")
+font_size = 10
+font_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[sub_resource type="Gradient" id="Gradient_t24uv"]
+interpolation_color_space = 2
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_chbv7"]
+gradient = SubResource("Gradient_t24uv")
+width = 16
+height = 16
+fill_from = Vector2(1, 1)
+
+[node name="AchievementManager-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7pmif")
+
+[node name="Plate" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -44.0
+offset_right = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(144, 44)
+
+[node name="Outline" type="TextureRect" parent="Plate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_t24uv")
+
+[node name="Background" type="TextureRect" parent="Plate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(40, 40)
+texture = SubResource("GradientTexture2D_2eoej")
+
+[node name="Icon" type="TextureRect" parent="Plate"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -36.0
+offset_right = 40.0
+offset_bottom = -4.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_chbv7")
+
+[node name="Title" type="Label" parent="Plate"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -14.0
+offset_right = -7.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "New achievement"
+label_settings = SubResource("LabelSettings_t24uv")
+autowrap_mode = 2
+clip_text = true
+
+[node name="Name" type="Label" parent="Plate"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 2.0
+offset_right = -7.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Example"
+label_settings = SubResource("LabelSettings_a6f7e")
+autowrap_mode = 2
+clip_text = true
+
+[node name="Glow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -88.0
+offset_right = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(288, 88)
+texture = SubResource("GradientTexture2D_chbv7")

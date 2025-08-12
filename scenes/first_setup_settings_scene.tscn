@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://devro4slg7mit"]
+[gd_scene load_steps=28 format=3 uid="uid://devro4slg7mit"]
 
 [ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/first_setup_settings_scene.gd" id="1_vtnqg"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_u4hiu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://crqhm3fy8xqmh" path="res://scripts/first_setup_settings/setup_volumes_menu.gd" id="5_olt1o"]
 [ext_resource type="AudioStream" uid="uid://by5ue3tfvnn5i" path="res://sounds/ui/click_1.mp3" id="6_66540"]
 [ext_resource type="AudioStream" uid="uid://bgo5tmiaavhpa" path="res://sounds/ui/button_correct.mp3" id="7_ecvvk"]
+[ext_resource type="Script" uid="uid://bx1ykqxo3mc7i" path="res://scripts/first_setup_settings/usesful_settings_menu.gd" id="7_hj1h8"]
 [ext_resource type="AudioStream" uid="uid://naegvrl2wovi" path="res://sounds/music/technological_minimalism.mp3" id="8_0rtm2"]
 
 [sub_resource type="Gradient" id="Gradient_1gbob"]
@@ -92,6 +93,10 @@ region = Rect2(32, 16, 16, 16)
 [sub_resource type="LabelSettings" id="LabelSettings_66540"]
 font = ExtResource("2_u4hiu")
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_hj1h8"]
+font = ExtResource("2_u4hiu")
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rtm2"]
 font = ExtResource("2_u4hiu")
@@ -242,6 +247,7 @@ stream = ExtResource("6_66540")
 bus = &"UI"
 
 [node name="SetupVolumes-Menu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,6 +310,125 @@ horizontal_alignment = 1
 [node name="MasterVolumeSFX" type="AudioStreamPlayer" parent="SetupVolumes-Menu"]
 stream = ExtResource("6_66540")
 bus = &"UI"
+
+[node name="UsesfulSettings-Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 344)
+script = ExtResource("7_hj1h8")
+
+[node name="Title" type="Label" parent="UsesfulSettings-Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 32.0
+offset_right = 214.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "Usesful settings"
+label_settings = SubResource("LabelSettings_a0uqf")
+horizontal_alignment = 1
+
+[node name="Container" type="VBoxContainer" parent="UsesfulSettings-Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -76.0
+offset_right = 180.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Nothing" type="Control" parent="UsesfulSettings-Menu/Container"]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="CheckBox" type="CheckBox" parent="UsesfulSettings-Menu/Container/Nothing"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -15.5
+offset_right = 53.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(45.5, 16)
+theme_override_fonts/font = ExtResource("2_u4hiu")
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Nothing"
+alignment = 1
+
+[node name="BatteryEnergy" type="Control" parent="UsesfulSettings-Menu/Container"]
+custom_minimum_size = Vector2(360, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UsesfulSettings-Menu/Container/BatteryEnergy"]
+layout_mode = 1
+offset_right = 299.0
+offset_bottom = 22.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 4
+
+[node name="Slider" type="HSlider" parent="UsesfulSettings-Menu/Container/BatteryEnergy/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+
+[node name="Label" type="Label" parent="UsesfulSettings-Menu/Container/BatteryEnergy/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "100%"
+label_settings = SubResource("LabelSettings_hj1h8")
+vertical_alignment = 1
+
+[node name="OIIA" type="Control" parent="UsesfulSettings-Menu/Container"]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="CheckBox" type="CheckBox" parent="UsesfulSettings-Menu/Container/OIIA"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -15.5
+offset_right = 53.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(45.5, 16)
+theme_override_fonts/font = ExtResource("2_u4hiu")
+theme_override_font_sizes/font_size = 24
+button_mask = 4
+text = "OIIA"
+alignment = 1
 
 [node name="Tip" type="Label" parent="."]
 layout_mode = 1
