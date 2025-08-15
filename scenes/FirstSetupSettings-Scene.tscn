@@ -1,15 +1,15 @@
 [gd_scene load_steps=28 format=3 uid="uid://devro4slg7mit"]
 
-[ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/first_setup_settings_scene.gd" id="1_vtnqg"]
-[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_u4hiu"]
-[ext_resource type="Script" uid="uid://bjbie4t2kwcbo" path="res://scripts/first_setup_settings/select_language_menu.gd" id="3_1iitd"]
-[ext_resource type="Texture2D" uid="uid://cas152j8wwg3o" path="res://textures/icons/langs_icons.png" id="3_a0uqf"]
-[ext_resource type="Theme" uid="uid://cooickbpux287" path="res://themes/basic_ui.tres" id="4_y7ly1"]
-[ext_resource type="Script" uid="uid://crqhm3fy8xqmh" path="res://scripts/first_setup_settings/setup_volumes_menu.gd" id="5_olt1o"]
-[ext_resource type="AudioStream" uid="uid://by5ue3tfvnn5i" path="res://sounds/ui/click_1.mp3" id="6_66540"]
-[ext_resource type="AudioStream" uid="uid://bgo5tmiaavhpa" path="res://sounds/ui/button_correct.mp3" id="7_ecvvk"]
-[ext_resource type="Script" uid="uid://bx1ykqxo3mc7i" path="res://scripts/first_setup_settings/usesful_settings_menu.gd" id="7_hj1h8"]
-[ext_resource type="AudioStream" uid="uid://naegvrl2wovi" path="res://sounds/music/technological_minimalism.mp3" id="8_0rtm2"]
+[ext_resource type="Script" uid="uid://wssiarrkl7g7" path="res://scripts/firstSetupSettings/FirstSetupSettings-Scene.gd" id="1_bl74e"]
+[ext_resource type="Script" uid="uid://bjbie4t2kwcbo" path="res://scripts/firstSetupSettings/SelectLanguage-Menu.gd" id="2_dlrya"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="3_1uf43"]
+[ext_resource type="Texture2D" uid="uid://cas152j8wwg3o" path="res://textures/icons/langs_icons.png" id="4_j0kw3"]
+[ext_resource type="AudioStream" uid="uid://by5ue3tfvnn5i" path="res://sounds/ui/click_1.mp3" id="5_hmc1f"]
+[ext_resource type="Script" uid="uid://crqhm3fy8xqmh" path="res://scripts/firstSetupSettings/SetupVolumes-Menu.gd" id="6_m03uo"]
+[ext_resource type="Script" uid="uid://bx1ykqxo3mc7i" path="res://scripts/firstSetupSettings/UsesfulSettings-Menu.gd" id="7_11qxx"]
+[ext_resource type="Theme" uid="uid://cooickbpux287" path="res://themes/basic_ui.tres" id="8_t1nva"]
+[ext_resource type="AudioStream" uid="uid://bgo5tmiaavhpa" path="res://sounds/ui/button_correct.mp3" id="9_bb4a8"]
+[ext_resource type="AudioStream" uid="uid://naegvrl2wovi" path="res://sounds/music/technological_minimalism.mp3" id="10_q588o"]
 
 [sub_resource type="Gradient" id="Gradient_1gbob"]
 interpolation_color_space = 1
@@ -40,7 +40,7 @@ height = 16
 fill_from = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a0uqf"]
-font = ExtResource("2_u4hiu")
+font = ExtResource("3_1uf43")
 font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7ly1"]
@@ -62,44 +62,44 @@ expand_margin_right = 32.0
 expand_margin_bottom = 32.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_y7ly1"]
-font = ExtResource("2_u4hiu")
+font = ExtResource("3_1uf43")
 font_size = 48
 font_color = Color(0, 1, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7ly1"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0uqf"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ecvvk"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1iitd"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olt1o"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rtm2"]
-atlas = ExtResource("3_a0uqf")
+atlas = ExtResource("4_j0kw3")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_66540"]
-font = ExtResource("2_u4hiu")
+font = ExtResource("3_1uf43")
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj1h8"]
-font = ExtResource("2_u4hiu")
+font = ExtResource("3_1uf43")
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rtm2"]
-font = ExtResource("2_u4hiu")
+font = ExtResource("3_1uf43")
 font_size = 24
 
 [node name="FirstSetupSettings-Scene" type="Control"]
@@ -109,7 +109,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vtnqg")
+script = ExtResource("1_bl74e")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2
@@ -151,7 +151,7 @@ grow_vertical = 2
 pivot_offset = Vector2(640, 360)
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
-script = ExtResource("3_1iitd")
+script = ExtResource("2_dlrya")
 
 [node name="Title" type="Label" parent="SelectLanguage-Menu"]
 layout_mode = 1
@@ -243,7 +243,7 @@ texture_disabled = SubResource("AtlasTexture_0rtm2")
 stretch_mode = 5
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="SelectLanguage-Menu"]
-stream = ExtResource("6_66540")
+stream = ExtResource("5_hmc1f")
 bus = &"UI"
 
 [node name="SetupVolumes-Menu" type="Control" parent="."]
@@ -255,7 +255,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(640, 360)
-script = ExtResource("5_olt1o")
+script = ExtResource("6_m03uo")
 
 [node name="Title" type="Label" parent="SetupVolumes-Menu"]
 layout_mode = 1
@@ -308,7 +308,7 @@ label_settings = SubResource("LabelSettings_66540")
 horizontal_alignment = 1
 
 [node name="MasterVolumeSFX" type="AudioStreamPlayer" parent="SetupVolumes-Menu"]
-stream = ExtResource("6_66540")
+stream = ExtResource("5_hmc1f")
 bus = &"UI"
 
 [node name="UsesfulSettings-Menu" type="Control" parent="."]
@@ -319,7 +319,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(640, 344)
-script = ExtResource("7_hj1h8")
+script = ExtResource("7_11qxx")
 
 [node name="Title" type="Label" parent="UsesfulSettings-Menu"]
 layout_mode = 1
@@ -370,7 +370,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 pivot_offset = Vector2(45.5, 16)
-theme_override_fonts/font = ExtResource("2_u4hiu")
+theme_override_fonts/font = ExtResource("3_1uf43")
 theme_override_font_sizes/font_size = 24
 button_pressed = true
 text = "Nothing"
@@ -424,7 +424,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 pivot_offset = Vector2(45.5, 16)
-theme_override_fonts/font = ExtResource("2_u4hiu")
+theme_override_fonts/font = ExtResource("3_1uf43")
 theme_override_font_sizes/font_size = 24
 button_mask = 4
 text = "OIIA"
@@ -463,16 +463,16 @@ grow_vertical = 0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(59, 19)
 mouse_default_cursor_shape = 2
-theme = ExtResource("4_y7ly1")
+theme = ExtResource("8_t1nva")
 text = "Confirm"
 
 [node name="Good" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ecvvk")
+stream = ExtResource("9_bb4a8")
 volume_db = -16.0
 bus = &"UI"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_0rtm2")
+stream = ExtResource("10_q588o")
 volume_db = -32.0
 pitch_scale = 0.75
 autoplay = true

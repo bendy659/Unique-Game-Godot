@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b6sf2obg4opd1"]
 
-[ext_resource type="Script" uid="uid://dcxtuh4rdxv0" path="res://scripts/lsm_scene.gd" id="1_8otfl"]
+[ext_resource type="Script" uid="uid://dcxtuh4rdxv0" path="res://scripts/LSM-Scene.gd" id="1_8otfl"]
 [ext_resource type="Texture2D" uid="uid://ism3xmbdm7ko" path="res://textures/icons/loading.png" id="1_tke3h"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_8otfl"]
 

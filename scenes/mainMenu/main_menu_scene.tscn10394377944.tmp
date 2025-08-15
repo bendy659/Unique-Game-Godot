@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://0kbh8otn6aby"]
+
+[ext_resource type="Texture2D" uid="uid://q3cncvaoeu2b" path="res://textures/main_menu/background.png" id="2_nleev"]
+
+[sub_resource type="GDScript" id="GDScript_ocixh"]
+script/source = "extends Control
+
+@onready var bg = $Background
+@onready var bgLine = $Background/Line0
+
+var aTime: float = 0.0
+
+## Background
+var bgLines: Dictionary = {}
+var bgTexture = load(\"res://textures/main_menu/background.png\")
+
+func _ready() -> void:
+	# Generate background lines
+	var lineCopy = bgLine.duplicate()
+	$Background.remove_child(bgLine)
+	for i in range(14):
+		var line = lineCopy.duplicate()
+		var atlas = AtlasTexture.new()
+		
+		atlas.atlas = bgTexture
+		atlas.region.size.y = 1296
+		
+		bgLines[i] = atlas
+		
+		line.texture = bgLines[i]
+		line.position.x = lineCopy.position.x
+		line.position.y = lineCopy.position.y + (64 * i)
+		line.modulate = lerp(Color.RED, Color.YELLOW, float(i) / (14 - 1))
+		
+		bg.add_child(line)
+
+func _process(delta: float) -> void:
+	aTime += delta
+	
+	for i in bgLines.keys():
+		var atlas = bgLines[i]
+		
+		atlas.region.position.y = aTime * (1 if i % 2 == 0 else -1) * 4
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocixh"]
+atlas = ExtResource("2_nleev")
+region = Rect2(0, 0, 0, 1296)
+
+[node name="MainMenu-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ocixh")
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line0" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+position = Vector2(-9.54969e-12, -104)
+rotation = 4.71238
+scale = Vector2(8, 8)
+skew = 0.0872665
+texture = SubResource("AtlasTexture_ocixh")
+centered = false

@@ -18,15 +18,19 @@ var confirmButtonVisible: bool = false
 var glowBottomAnim = AnimationHelper.Animator.new()
 var menusAnimIn = AnimationHelper.Animator.new()
 var menusAnimOut = AnimationHelper.Animator.new()
+var enterExitAnim = AnimationHelper.Animator.new()
 
 signal confirmed(data: Dictionary)
 signal confirm_show
 signal confirm_hide
 signal next_menu
+signal setupEnded
 
 ## Main
 
 func _ready() -> void:
+	Game.updateCanvas(self)
+	
 	for node in get_children():
 		if node.get_class() == "Control":
 			node.visible = true
@@ -67,9 +71,25 @@ func _ready() -> void:
 			AnimationHelper.Keyframe.new(1, 0)
 		]
 	])
+	enterExitAnim.timelines({
+		&"ENTER": [
+			[
+				AnimationHelper.Keyframe.new(0, 1, 5),
+				AnimationHelper.Keyframe.new(1, 0)
+			]
+		],
+		&"EXIT": [
+			[
+				AnimationHelper.Keyframe.new(0, 0, 0.25),
+				AnimationHelper.Keyframe.new(1, 1)
+			]
+		]
+	})
 	await Game.wait(1)
 	await get_tree().process_frame
-
+	
+	enterExitAnim.play(true, &"ENTER")
+	
 	for menu in menus:
 		currentMenu = menu
 		menu.start()
@@ -78,6 +98,12 @@ func _ready() -> void:
 		
 		lastMenu = menu
 		menusAnimOut.play(true)
+	await Game.wait(1)
+	
+	enterExitAnim.play(true, &"EXIT")
+	await setupEnded
+	
+	LSM.loadScene("mainMenu/MainMenu-Scene")
 
 func _process(delta: float) -> void:
 	aTime += delta

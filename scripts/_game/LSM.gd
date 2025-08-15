@@ -9,4 +9,7 @@ var waitAnyButton: bool
 
 func loadScene(scenePath: String, waitAnyButton: bool = true) -> void:
 	nextScene = "res://scenes/" + scenePath + ".tscn"
-	get_tree().change_scene_to_file("res://scenes/load_scene_manager.tscn")
+	await AchivementManager.hide_achievement
+	await Game.wait(1)
+	
+	get_tree().change_scene_to_file("res://scenes/LSM-Scene.tscn")

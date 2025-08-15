@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5urbjpwjoawt"]
 
-[ext_resource type="Script" uid="uid://bgbg1vpk6w26s" path="res://scripts/crash_scene.gd" id="1_2pmve"]
+[ext_resource type="Script" uid="uid://bgbg1vpk6w26s" path="res://scripts/Crash-Scene.gd" id="1_2pmve"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="1_hmc0b"]
 
 [sub_resource type="Gradient" id="Gradient_u81s1"]

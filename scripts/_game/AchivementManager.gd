@@ -1,10 +1,14 @@
 extends Node
 
-var scene: PackedScene = load("res://scenes/achievement_manager_scene.tscn")
+var scene: PackedScene = load("res://scenes/AchievementManager-Scene.tscn")
 var instance: Node
 
 var achievments: Array[Achi] = [
-	Achi.new("example", false)
+	Achi.new("AchiNotFound", Vector2(0, 0)),
+	Achi.new("example", Vector2(1, 0)),
+	
+	Achi.new("selectLanguage", Vector2(2, 0)),
+	Achi.new("setupVolumes", Vector2(3, 0)),
 ]
 
 signal show_achievement
@@ -16,47 +20,49 @@ func _ready() -> void:
 	show_achievement.connect(onShowAchievement)
 	hide_achievement.connect(onHideAchievement)
 
-func onShowAchievement(achiId: String) -> void:
+func onShowAchievement(achiId: String, unlocked: bool) -> void:
 	if !Game.canvas:
-		Game.updateCanvas()
 		await Game.canvas_found
 	
-	instance = scene.instantiate()
-	scene["achiId"] = achiId
-	Game.canvas.add_child(instance)
-	await Game.wait(5)
+	if instance:
+		instance.queue_free()
 	
-	hide_achievement.emit(achiId)
+	instance = scene.instantiate()
+	instance["achiId"] = achiId
+	instance["unlocked"] = unlocked
+	Game.canvas.add_child(instance)
 
 func onHideAchievement() -> void:
 	Game.canvas.remove_child(instance)
-
 
 ## Util's
 
 class Achi:
 	var id: String
 	var getup: bool
-	var iconData: Rect2
+	var iconData: Vector2
 	
 	func _init(
 		iid: String,
-		igetup: bool = false
+		iiconData: Vector2
 	) -> void:
 		id = iid
-		getup = igetup
+		iconData = iiconData
 	
 	func unlock() -> void:
 		getup = true
-		emit_signal("show_achievement")
+		AchivementManager.show_achievement.emit(id, true)
 	
 	func lock() -> void:
 		getup = false
-		emit_signal("show_achievement")
+		AchivementManager.show_achievement.emit(id, false)
+	
+	func getIconRect() -> Rect2:
+		return Rect2(iconData.x * 32, iconData.y * 32, 32, 32)
 
 func getAchi(achiId: String) -> Achi:
 	for achi in achievments:
 		if achi.id == achiId:
 			return achi
-	
-	return Achi.new("AchiNotFound")
+	Logger.warn("Ачивка с id, содержащим " + achiId + ", не найдена!")
+	return achievments[0]

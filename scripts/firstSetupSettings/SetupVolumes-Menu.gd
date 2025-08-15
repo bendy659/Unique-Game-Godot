@@ -34,6 +34,7 @@ func onMasterVolumeChange(value: float) -> void:
 	masterVolumeSFX.play()
 
 func onConfirmed() -> void:
+	AchivementManager.getAchi("setupVolumes").unlock()
 	parent.emit_signal("confirmed", { "soundMasterVolume": masterVolumeSlider.value })
 	
 	title.text = Language.translate("firstSetupSettings.good")

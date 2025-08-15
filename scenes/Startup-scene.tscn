@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c220aiji1cgkr"]
 
-[ext_resource type="Script" uid="uid://dm5h5njfxi1cm" path="res://scripts/startup_scene.gd" id="1_kpxtl"]
+[ext_resource type="Script" uid="uid://dm5h5njfxi1cm" path="res://scripts/Startup-Scene.gd" id="1_kpxtl"]
 [ext_resource type="VideoStream" uid="uid://dobh45d5anf1f" path="res://movies/startup_screen.ogv" id="2_a51k1"]
 [ext_resource type="Texture2D" uid="uid://ism3xmbdm7ko" path="res://textures/icons/loading.png" id="3_kpxtl"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="4_5wjrr"]
@@ -206,3 +206,5 @@ text = "Created a
 label_settings = SubResource("LabelSettings_xhn58")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Canvas" type="CanvasLayer" parent="."]

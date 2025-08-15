@@ -34,10 +34,28 @@ const translation: Dictionary = {
 		}
 	},
 	
-	"achivments": {
+	"achievements": {
+		"title": {
+			"unlock": ["Новое достижение", "New achievement"],
+			"lock": ["Достижение отозванно", "Achievement revoked"]
+		},
+		
+		"AchiNotFound": {
+			"name": ["Не найдено!", "Not found!"],
+			"desc": ["Это баг. И мне как-то пофиг", "This is bug. It's OK"]
+		},
+		
 		"example": {
 			"name": ["Вставте имя", "Insert name"],
 			"desc": ["Вставте описание", "Insert description"]
+		},
+		"selectLanguage": {
+			"name": ["Я люблю Русский)", "Im love English)"],
+			"desc": ["Рашка!", "OK"]
+		},
+		"setupVolumes": {
+			"name": ["И ушам не больно", "Approved by ears"],
+			"desc": ["Обезопасьте свои уши от Bass-boos'а", "Protect your ears from Bass-boost crimes"]
 		}
 	}
 }
@@ -54,7 +72,8 @@ func translate(key: String, overrideLangId: int = -1) -> Variant:
 			continue
 		else:
 			Logger.warn("Unable find translation for key '%s'" % key)
-			break
+			return key
 	
 	var id = overrideLangId if overrideLangId != -1 else GameSettings.language.value
+	
 	return result[id]

@@ -119,6 +119,7 @@ func onConfirmed() -> void:
 	
 	parent.emit_signal("confirmed", { "lang": langSelectedID })
 	parent.get_node("Tip").text = Language.translate("firstSetupSettings.tip")
+	AchivementManager.getAchi("selectLanguage").unlock()
 	title.text = "Отлично" if langSelected == ruIcon else "Good"
 	title.modulate = Color(0, 1, 0)
 	await Game.wait(2)

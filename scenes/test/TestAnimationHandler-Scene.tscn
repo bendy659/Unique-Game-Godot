@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpnfifumlkl60"]
+
+[ext_resource type="Script" uid="uid://dq12p136kmbhp" path="res://scripts/tests/TestAnimationHandler-Scene.gd" id="1_b6tol"]
+[ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_vrpq0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_801ln"]
+font = ExtResource("2_vrpq0")
+font_size = 64
+
+[node name="TestAnimationHandler-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b6tol")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -23.0
+offset_right = 1294.0
+offset_bottom = 759.0
+color = Color(0.237539, 0.237539, 0.237539, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 666.0
+offset_right = 1294.0
+offset_bottom = 745.0
+color = Color(0.41598, 0.41598, 0.41598, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 539.0
+offset_right = 309.0
+offset_bottom = 667.0
+pivot_offset = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 76.0
+text = "0"
+label_settings = SubResource("LabelSettings_801ln")

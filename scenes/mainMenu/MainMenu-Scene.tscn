@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://0kbh8otn6aby"]
+
+[ext_resource type="Script" uid="uid://d3ji6yvpcwyrq" path="res://scripts/main_menu/MainMenu-Scene.gd" id="1_bqtrg"]
+[ext_resource type="Texture2D" uid="uid://q3cncvaoeu2b" path="res://textures/main_menu/background.png" id="1_lq45f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocixh"]
+atlas = ExtResource("1_lq45f")
+region = Rect2(0, 0, 0, 164)
+
+[sub_resource type="Gradient" id="Gradient_ocixh"]
+interpolation_mode = 2
+interpolation_color_space = 1
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lx82y"]
+gradient = SubResource("Gradient_ocixh")
+width = 80
+height = 45
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[node name="MainMenu-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqtrg")
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line0" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+position = Vector2(-9.54969e-12, -104)
+rotation = 4.71238
+scale = Vector2(8, 8)
+skew = 0.0872665
+texture = SubResource("AtlasTexture_ocixh")
+centered = false
+
+[node name="Vienetce" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_lx82y")

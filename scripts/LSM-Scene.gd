@@ -33,10 +33,7 @@ func _ready() -> void:
 	if packedScene:
 		if LSM.waitAnyButton:
 			await anyButtonPressed
-		
-		Game.updateCanvas()
-		await Game.canvas_found
-		
+
 		get_tree().change_scene_to_packed(packedScene)
 	else:
 		Logger.err("Unable load '%s' scene!" % LSM.nextScene)

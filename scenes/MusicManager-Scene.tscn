@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5jon07hi0jb5"]
 
-[ext_resource type="Script" uid="uid://bqa3x6tulj1i6" path="res://scripts/music_manager_scene.gd" id="1_c6h5m"]
+[ext_resource type="Script" uid="uid://bqa3x6tulj1i6" path="res://scripts/MusicManager-Scene.gd" id="1_c6h5m"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="1_kf0u4"]
 [ext_resource type="Texture2D" uid="uid://c35ushi81sgqu" path="res://textures/ui/music_disc.png" id="2_vg86u"]
 

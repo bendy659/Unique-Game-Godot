@@ -12,6 +12,8 @@ var nTime: float = 0.0
 ## Main
 
 func _ready() -> void:
+	Game.updateCanvas(self)
+	
 	xdl.text = "%s \"Godot Engine\"" % Language.translate("startup.xdl")
 	animator.play("RESET")
 	
@@ -26,10 +28,11 @@ func _ready() -> void:
 	AchivementManager.getAchi("example").unlock()
 	await Game.wait(6 + 1)
 	
+	AchivementManager.getAchi("example").lock()
 	animator.play("show")
 	await Game.wait(3)
 	
-	LSM.loadScene("first_setup_settings_scene", false)
+	LSM.loadScene("FirstSetupSettings-Scene", false)
 
 func _process(delta: float) -> void:
 	nTime += delta

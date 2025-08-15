@@ -33,12 +33,17 @@ Language="*res://scripts/_game/Language.gd"
 GameSettings="*res://scripts/_game/GameSettings.gd"
 AnimationHelper="*res://scripts/utils/AnimationHelper.gd"
 AchivementManager="*res://scripts/_game/AchivementManager.gd"
+AnimationHandler="*res://addons/animationHandler/AnimationHandler.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/animationHandler/plugin.cfg")
 
 [input]
 

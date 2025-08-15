@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bw8krhjb52bwn"]
+[gd_scene load_steps=20 format=3 uid="uid://bw8krhjb52bwn"]
 
-[ext_resource type="Script" uid="uid://cer7c5uqm5cma" path="res://scripts/achievement_manager_scene.gd" id="1_7pmif"]
+[ext_resource type="Script" uid="uid://cer7c5uqm5cma" path="res://scripts/AchievementManager-Scene.gd" id="1_7pmif"]
 [ext_resource type="Texture2D" uid="uid://dtkrvkun1lnsg" path="res://textures/achievements_atlas.png" id="1_fsvh7"]
 [ext_resource type="FontFile" uid="uid://d0enclyf8gr28" path="res://fonts/blockblueprint.ttf" id="2_7pmif"]
+[ext_resource type="Texture2D" uid="uid://bfxah5owdauyx" path="res://textures/achievements_punyk.png" id="4_p0goe"]
+[ext_resource type="AudioStream" uid="uid://dtc73c6uptv0e" path="res://sounds/ui/achievement_getup.mp3" id="5_48lwc"]
 
 [sub_resource type="Gradient" id="Gradient_1swfo"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
@@ -30,15 +32,20 @@ fill_from = Vector2(1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chbv7"]
 atlas = ExtResource("1_fsvh7")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t24uv"]
 font = ExtResource("2_7pmif")
-font_size = 12
+font_size = 10
 font_color = Color(1, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a6f7e"]
 font = ExtResource("2_7pmif")
-font_size = 10
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_jignt"]
+font = ExtResource("2_7pmif")
+font_size = 6
 font_color = Color(0.699653, 0.699653, 0.699653, 1)
 
 [sub_resource type="Gradient" id="Gradient_t24uv"]
@@ -51,6 +58,20 @@ width = 16
 height = 16
 fill_from = Vector2(1, 1)
 
+[sub_resource type="Curve" id="Curve_p0goe"]
+_data = [Vector2(0, 1), 0.0, 2.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_p0goe"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_48lwc"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0.678944, 0.678944, 0.678944, 1, 1, 1, 1, 1)
+
 [node name="AchievementManager-Scene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -58,7 +79,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_7pmif")
+unlocked = true
 
 [node name="Plate" type="Control" parent="."]
 layout_mode = 1
@@ -67,9 +90,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
+offset_left = -200.0
 offset_top = -44.0
-offset_right = -16.0
+offset_right = -36.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -117,16 +140,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -120.0
 offset_top = -14.0
-offset_right = -7.0
+offset_right = -8.0
 offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "New achievement"
 label_settings = SubResource("LabelSettings_t24uv")
-autowrap_mode = 2
 clip_text = true
+text_overrun_behavior = 3
 
 [node name="Name" type="Label" parent="Plate"]
 layout_mode = 1
@@ -135,16 +158,34 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -120.0
 offset_top = 2.0
-offset_right = -7.0
+offset_right = -8.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Example name"
+label_settings = SubResource("LabelSettings_a6f7e")
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Desc" type="Label" parent="Plate"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 10.0
+offset_right = -8.0
 offset_bottom = 18.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "Example"
-label_settings = SubResource("LabelSettings_a6f7e")
-autowrap_mode = 2
+text = "Example description"
+label_settings = SubResource("LabelSettings_jignt")
 clip_text = true
+text_overrun_behavior = 3
 
 [node name="Glow" type="TextureRect" parent="."]
 layout_mode = 1
@@ -153,10 +194,50 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -304.0
+offset_left = -344.0
 offset_top = -88.0
 offset_right = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(288, 88)
 texture = SubResource("GradientTexture2D_chbv7")
+
+[node name="Punyk" type="CPUParticles2D" parent="."]
+position = Vector2(1120, 728)
+emitting = false
+amount = 128
+texture = ExtResource("4_p0goe")
+lifetime = 2.25
+one_shot = true
+preprocess = 0.1
+explosiveness = 1.0
+randomness = 1.0
+use_fixed_seed = true
+seed = 3430092789
+emission_shape = 3
+emission_rect_extents = Vector2(144, 1)
+direction = Vector2(0, -100)
+spread = 0.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+linear_accel_min = 10.0
+linear_accel_max = 10.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+damping_max = 100.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_p0goe")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("Gradient_p0goe")
+color_initial_ramp = SubResource("Gradient_48lwc")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_48lwc")
+pitch_scale = 0.8
+bus = &"UI"
+parameters/looping = false
