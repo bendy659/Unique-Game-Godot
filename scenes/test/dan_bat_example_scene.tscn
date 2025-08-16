@@ -1,0 +1,144 @@
+[gd_scene load_steps=4 format=3 uid="uid://g8rxwiuu4cp2"]
+
+[ext_resource type="Script" uid="uid://ve46sveits6b" path="res://scripts/tests/Dan_Bat-Example-Scene.gd" id="1_2bdrv"]
+
+[sub_resource type="Gradient" id="Gradient_854s7"]
+colors = PackedColorArray(0.51, 0.1955, 0, 1, 0.692625, 0.276469, 2.88785e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2bdrv"]
+gradient = SubResource("Gradient_854s7")
+width = 4
+
+[node name="Dan_Bat-Example-Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2bdrv")
+
+[node name="Group_0" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 719.0
+color = Color(6.73831e-06, 0.706083, 0.900946, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 244.872
+offset_top = -38.9759
+offset_right = 466.872
+offset_bottom = 173.024
+rotation = -0.289193
+pivot_offset = Vector2(426.178, 636.686)
+color = Color(1, 0.773333, 0.32, 1)
+
+[node name="Backgroud_0" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_top = 379.0
+offset_right = 333.0
+offset_bottom = 611.0
+color = Color(0.49, 0.261333, 0, 1)
+
+[node name="Backgroud_1" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 460.0
+offset_right = 538.0
+offset_bottom = 655.0
+color = Color(0.49, 0.261333, 0, 1)
+
+[node name="Backgroud_2" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 310.0
+offset_right = 644.0
+offset_bottom = 599.0
+color = Color(0.49, 0.261333, 0, 1)
+
+[node name="Backgroud_3" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 355.0
+offset_right = 1040.0
+offset_bottom = 608.0
+color = Color(0.49, 0.261333, 0, 1)
+
+[node name="Backgroud_4" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 845.0
+offset_top = 456.0
+offset_right = 1283.0
+offset_bottom = 605.0
+color = Color(0.49, 0.261333, 0, 1)
+
+[node name="Backgroud_5" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_top = 379.0
+offset_right = 333.0
+offset_bottom = 611.0
+scale = Vector2(1, 0.2)
+color = Color(0, 0.49, 0.049, 1)
+
+[node name="Backgroud_6" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 460.0
+offset_right = 538.0
+offset_bottom = 655.0
+scale = Vector2(1, 0.2)
+color = Color(0, 0.49, 0.049, 1)
+
+[node name="Backgroud_7" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 310.0
+offset_right = 644.0
+offset_bottom = 599.0
+scale = Vector2(1, 0.2)
+color = Color(0, 0.49, 0.049, 1)
+
+[node name="Backgroud_8" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 355.0
+offset_right = 1040.0
+offset_bottom = 608.0
+scale = Vector2(1, 0.2)
+color = Color(0, 0.49, 0.049, 1)
+
+[node name="Backgroud_9" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_left = 845.0
+offset_top = 456.0
+offset_right = 1283.0
+offset_bottom = 605.0
+scale = Vector2(1, 0.2)
+color = Color(0, 0.49, 0.049, 1)
+
+[node name="Ground_0" type="ColorRect" parent="Group_0"]
+layout_mode = 0
+offset_top = 593.0
+offset_right = 1280.0
+offset_bottom = 719.0
+color = Color(0, 0.611925, 0.293383, 1)
+
+[node name="Root" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 150.0
+offset_right = 600.0
+offset_bottom = 659.0
+pivot_offset = Vector2(15, 509)
+texture = SubResource("GradientTexture1D_2bdrv")
+
+[node name="Flag_0" type="ColorRect" parent="Root"]
+layout_mode = 0
+offset_left = 14.0
+offset_right = 286.0
+offset_bottom = 24.0
+color = Color(1, 0, 0, 1)

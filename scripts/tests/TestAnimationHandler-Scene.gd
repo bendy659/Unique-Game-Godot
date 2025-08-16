@@ -56,4 +56,3 @@ func _process(delta: float) -> void:
 
 func onEnded():
 	label.text = "OK"
-	set_process(false)
